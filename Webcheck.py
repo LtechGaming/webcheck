@@ -1,5 +1,5 @@
 #Web checker python 3.12 edition
-ac = 'qwertyuipopasdfghjklzxcvbnm:/#%1234567890."!'
+ac = 'qwertyuipopasdfghjklzxcvbnm:/#%1234567890."! '
 import urllib.request
 while True:
     w = input("Website to check (read instructions): ")
