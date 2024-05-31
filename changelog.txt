@@ -1,0 +1,1 @@
+1.1.0(info update) - added changelog.txt, expanded character limit, added info, stopped crashes, and updated readme.
