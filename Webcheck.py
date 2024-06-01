@@ -7,11 +7,12 @@ print("Finish")
 print("Webcheck v1.1.0 in python")
 while True:
     version = 0
-    w = input("Website to check (read instructions): ")
+    w = input("Website to check: ")
     ic = []
     icr = "failed"
     ica = 0
     ics = "Pass"
+    add = ""
     print(" ")
     for i in range(0, len(w)):
         if w[i] in ac:
@@ -32,10 +33,14 @@ while True:
     sectorlist = w.split(":")
     if sectorlist[0] == "http":
         version = 4
-    else:
+    elif sectorlist[0] == "http":
         version = 5
-    unsvers = "http" + w[version:len(w)]
-    svers = "https" + w[version:len(w)]
+    else:
+        version = 0
+        add = "://"
+    unsvers = "http" + add + w[version:len(w)]
+    svers = "https" + add + w[version:len(w)]
+    print(unsvers)
     unsav = False
     sav = False
     try:
