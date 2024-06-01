@@ -1,10 +1,12 @@
 #Web checker python 3.12 edition
+#License: MIT
 print("Starting p1")
 ac = 'qwertyuipopasdfghjklzxcvbnm:/#%1234567890."! @_()-'
 import urllib.request
 print("Finish")
 print("Webcheck v1.1.0 in python")
 while True:
+    version = 0
     w = input("Website to check (read instructions): ")
     ic = []
     icr = "failed"
@@ -27,14 +29,33 @@ while True:
             print("Sites may use characters from other languages that look like latin characters, and this makes them look legit. However, they aren't the same as the real website.")
     print(" ")
     print(" ")
+    sectorlist = w.split(":")
+    if sectorlist[0] == "http":
+        version = 4
+    else:
+        version = 5
+    unsvers = "http" + w[version:len(w)]
+    svers = "https" + w[version:len(w)]
+    unsav = False
+    sav = False
     try:
-        st = urllib.request.urlopen(w).status
+        st = urllib.request.urlopen(unsvers).status
         if st == 200:
-            print(f'{w} status: up({st})')
+            print(f'{w[(version + 3):len(w)]} http status: up({st})')
         else:
-            print(f'{w} status: unknown or down({st})')
+            print(f'{w[(version + 3):len(w)]} http status: unknown or down({st})')
+        unsav = True
     except:
-        print("Couldn't find the website, or the certificate is incorrect. If you have definitely spelt it correctly, this could be a red flag.")
-        print("One fix is to use http instead of https, if they haven't got an ssl certificate.")
+        print("Couldn't find website")
+    print(" ")
+    try:
+        st = urllib.request.urlopen(svers).status
+        if st == 200:
+            print(f'{w[(version + 3):len(w)]} https status: up({st})')
+        else:
+            print(f'{w[(version + 3):len(w)]} https status: unknown or down({st})')
+        sav = True
+    except:
+        print("https not available")
     print(" ")
     print(" ")

@@ -1,1 +1,2 @@
+1.2.0(http/https update) - updated to check for https/http versions
 1.1.0(info update) - added changelog.txt, expanded character array, added info, stopped crashes, and updated readme.
