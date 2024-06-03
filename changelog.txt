@@ -1,3 +1,4 @@
+1.4.1(access update 1) - localisation
 1.3.0(no fix) - allows you to now not use the http and https starters.
 1.2.0(http/https update) - updated to check for https/http versions
 1.1.0(info update) - added changelog.txt, expanded character array, added info, stopped crashes, and updated readme.

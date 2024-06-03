@@ -1,17 +1,21 @@
 #Web checker python 3.12 edition
 #License: MIT
-print("Starting p1")
-ac = 'qwertyuipopasdfghjklzxcvbnm:/#%1234567890."! @_()-'
 import urllib.request
-print("Finish")
-print("Webcheck v1.1.0 in python")
+print("sl")
+import json
+lang = open("en_uk.json")
+la = json.load(lang)
+print(la['start_imports'])
+ac = 'qwertyuipopasdfghjklzxcvbnm:/#%1234567890."! @_()-'
+print(la['finish_text'])
+print(la['start_text'])
 while True:
     version = 0
-    w = input("Website to check: ")
+    w = input(la["web_input_text"])
     ic = []
-    icr = "failed"
+    icr = la["failed"]
     ica = 0
-    ics = "Pass"
+    ics = la["pass"]
     add = ""
     print(" ")
     for i in range(0, len(w)):
@@ -19,48 +23,47 @@ while True:
             ica += 0
         else:
             ica += 1
-            ics = "Fail"
+            ics = la["fail"]
             ic += w[i]
-    icr = "succeeded"
-    print("Character check " + str(icr) + " with a result of " + str(ics) + " and " + str(ica) + " bad characters")
+    icr = la["success"]
+    print(la["cc"] + str(icr) + la["result"] + str(ics) + la["and"] + str(ica) + la["bc"])
     if ica > 0:
-        print("The bad characters are: " + str(ic) + ".")
-        i = input("Press i for more info, otherwise press anything else: ")
+        print(la["bci"] + str(ic) + ".")
+        i = input(la["inforequest"])
         if i == "i":
-            print("Sites may use characters from other languages that look like latin characters, and this makes them look legit. However, they aren't the same as the real website.")
+            print(la["infofull"])
     print(" ")
     print(" ")
     sectorlist = w.split(":")
-    if sectorlist[0] == "http":
-        version = 4
-    elif sectorlist[0] == "http":
+    if sectorlist[0] == "https":
         version = 5
+    elif sectorlist[0] == "http":
+        version = 4
     else:
         version = 0
         add = "://"
     unsvers = "http" + add + w[version:len(w)]
     svers = "https" + add + w[version:len(w)]
-    print(unsvers)
     unsav = False
     sav = False
     try:
         st = urllib.request.urlopen(unsvers).status
         if st == 200:
-            print(f'{w[(version + 3):len(w)]} http status: up({st})')
+            print(unsvers + 'http '+ la["statusup"] + str(st))
         else:
-            print(f'{w[(version + 3):len(w)]} http status: unknown or down({st})')
+            print(unsvers + 'http ' + la["statusdown"] + str(st))
         unsav = True
     except:
-        print("Couldn't find website")
+        print(la["noweb"])
     print(" ")
     try:
         st = urllib.request.urlopen(svers).status
         if st == 200:
-            print(f'{w[(version + 3):len(w)]} https status: up({st})')
+            print(svers + 'https ' + la["statusup"] + str(st))
         else:
-            print(f'{w[(version + 3):len(w)]} https status: unknown or down({st})')
+            print(svers + 'https ' + la["statusdown"] + str(st))
         sav = True
     except:
-        print("https not available")
+        print(la["nossl"])
     print(" ")
     print(" ")

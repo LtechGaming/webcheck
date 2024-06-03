@@ -1,0 +1,23 @@
+{
+  "start_imports": "Starting Iteration 2",
+  "finish_text": "Finish",
+  "start_text": "Webcheck 1.3.0 in Python",
+  "web_input_text": "Website to check: ",
+  "failed": "failed",
+  "pass": "Pass",
+  "fail": "Fail",
+  "success": "succeeded",
+  "cc": "Character check ",
+  "result": " with a result of ",
+  "and": " and ",
+  "bc": " bad characters",
+  "bci": "The bad characters are: ",
+  "fullstop": ".",
+  "inforequest": "Press i for more info, otherwise press anything else: ",
+  "infofull": "Sites may use characters from other languages that look like latin characters, and this makes them look legit. However, they aren't the same as the real website, and are totally separate domains",
+  "statusup": " status: up - ",
+  "statusdown": " status: down/unknown - ",
+  "unavailable": "unavailable",
+  "noweb": "Couldn't find website",
+  "nossl": "https not available"
+}
