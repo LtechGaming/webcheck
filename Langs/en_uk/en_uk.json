@@ -1,8 +1,8 @@
 {
   "start_imports": "Starting Iteration 2",
   "finish_text": "Finish",
-  "start_text": "Webcheck 1.3.0 in Python",
-  "web_input_text": "Website to check: ",
+  "start_texto": "Webcheck ",
+  "web_input_text": "Website to check(or use wc:// for commands): ",
   "failed": "failed",
   "pass": "Pass",
   "fail": "Fail",
@@ -19,5 +19,13 @@
   "statusdown": " status: down/unknown - ",
   "unavailable": "unavailable",
   "noweb": "Couldn't find website",
-  "nossl": "https not available"
+  "nossl": "https not available",
+  "modeinput": "Type \"True\" for new system, \"False\" for old system: ",
+  "olderror": "Couldn't find website or ssl not available (if https used). The old system also requires the https:// or http://",
+  "start_textt": " in Python shell",
+  "complang": "Language, completion, and compatibility: ",
+  "cmds": "Command used",
+  "notfound": "Command not found or parts incorrect",
+  "enabled": "Enabled",
+  "disabled": "Disabled"
 }
