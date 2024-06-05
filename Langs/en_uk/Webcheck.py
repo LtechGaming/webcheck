@@ -8,7 +8,7 @@ print(la['start_imports'])
 import urllib.request
 ac = 'qwertyuipopasdfghjklzxcvbnm:/#%1234567890."! @_()-QWERTYUIOPASDFGHJKLZXCVBNM'
 print(la['finish_text'])
-webcheckversion = "2b"
+webcheckversion = "2"
 print(la['start_texto'] + webcheckversion + la["start_textt"])
 incom = ""
 langname = "English(UK)"
