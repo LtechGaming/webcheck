@@ -107,7 +107,7 @@ while True:
         if incom == "//commands":
             print("commands, changelog, lang, dv, cc:<True/False>, st:<True/False>")
         elif incom == "//changelog":
-            print("1.5.0 and 1.4.0 - localisation, ability to change between systems, commands")
+            print("2.0 and 1.4.0 - localisation, ability to change between systems, commands")
         elif incom == "//lang":
             print(la["complang"] + langname + " " + langper + " " + langcompat)
         elif incom == "//dv":
