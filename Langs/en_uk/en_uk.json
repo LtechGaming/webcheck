@@ -27,5 +27,9 @@
   "cmds": "Command used",
   "notfound": "Command not found or parts incorrect",
   "enabled": "Enabled",
-  "disabled": "Disabled"
+  "disabled": "Disabled",
+  "resetv": "Resetting all variables! This may take a while...",
+  "iwebwarn": "WARNING: You are about to use the raw status check(iweb). The program may crash. Proceed?(y/n) ",
+  "iweb": "(iweb) Web to check, directory required: ",
+  "chinfo": "Command help only available in EN_UK"
 }
