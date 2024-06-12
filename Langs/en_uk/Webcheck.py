@@ -7,43 +7,75 @@ currentdir = os.getcwd()
 lang = open(currentdir + "/en_uk.json")
 la = json.load(lang)
 print(la['start_imports'])
-print("1")
+import types
 import logging
-print("2")
 logging.basicConfig(filename="logs.log", level=logging.INFO)
-print("3")
 from datetime import datetime
-print("4")
 timen = datetime.now()
-print("5")
 logging.info('bootup' + str(timen))
-print("6")
 import urllib.request
-print("7")
 ac = 'qwertyuipopasdfghjklzxcvbnm:/#%1234567890."! @_()-QWERTYUIOPASDFGHJKLZXCVBNM'
-print("8")
-webcheckversion = "2.1"
-print("9")
+webcheckversion = "3"
 incom = ""
-print("10")
 langname = "English(UK)"
-print("11")
 langper = "100%(source lang)"
-print("12")
 langcompat = "full"
-print("13")
+confusion = 0
 ccenabled = True
-print("14")
 stenabled = True
-print("15")
 forcedst = False
-print("16")
 forcedstv = True
-print("17")
 ex = False
+import sys
+sys.path
+mf = 0
+mods = [x[0] for x in os.walk(currentdir + "/mods")]
+for i in mods:
+    if "pyc" in i:
+        mods.remove(i)
+mods = mods[1:]
+mf = len(mods)
+modmetasopen = []
+modmetas = []
+for i in mods:
+    try:
+        modmetasopen.append(open(str(i) + "/manifest.json"))
+    except:
+        print("Manifest could not be found for " + str(i))
+        mods.remove(i)
+ml = len(mods)
+for i in modmetasopen:
+    modmetas.append(json.load(i))
+
 print(la['finish_text'])
 print(la['start_texto'] + webcheckversion + la["start_textt"])
-while True:
+print(la["policy"])
+print(la["modding"])
+
+ca = []
+for i in modmetas:
+    ca.append(i["name"])
+print(str(mf) + la["mf"])
+print(str(ml) + la["ml"] + str(ca))
+modsenabled = True
+cat = []
+a = 0
+reg = True
+for i in modmetas:
+    cat.append(i["id"])
+    sys.path.insert(1,str(mods[a]) + "/code")
+    try:
+        modu = __import__(("fulloverride" + i["id"]))
+        print(f"WARN: {i['name']} uses full overrides. Mods with full overrides may not be compatible with each other. Restarting...")
+        reg = False
+    except:
+        print(str(i["name"]) + la["nofull"])
+    try:
+        modu.main()
+    except:
+        confusion +=1
+    a +=1
+while reg == True:
     proc = ""
     incom = ""
     sectorlist = []
@@ -140,18 +172,32 @@ while True:
             except:
                 logging.warning("Check fail for " + w)
                 print(la["olderror"])
-    elif command == True:
+    if modsenabled:
+        print(" ")
+        cat = []
+        a = 0
+        for i in modmetas:
+            cat.append(i["id"])
+            sys.path.insert(1,str(mods[a]) + "/code")
+            try:
+                modu = __import__(("addons" + i["id"]))
+            except:
+                print(str(i) + la["nocom"])
+            a +=1
+            modu.extras(w)
+        
+    if command == True:
         print(la["cmds"])
         print(" ")
         print(" ")
         if incom == "//commands":
-            print("commands, changelog, lang, dv, cc:<True/False>, st:<True/False>, resetvars, iweb, fstv<True/False>, fstve<True/False>, commandhelp, cv, echo<output>, log<output>, exper<True/False>")
+            print("commands, changelog, lang, dv, cc:<True/False>, st:<True/False>, resetvars, iweb, fstv<True/False>, fstve<True/False>, commandhelp, cv, echo<output>, log<output>, exper<True/False>, policy, modding, modinfo<id>")
         elif incom == "//changelog":
-            print("2.1 - separate command changelog, logs")
+            print("3 - modding API, addons API, policies")
         elif incom == "//lang":
             print(la["complang"] + langname + " " + langper + " " + langcompat)
         elif incom == "//dv":
-            print("DV 2.3 - logs, cc separate")
+            print("DV 2.5 - Custom design possibilities with Modding API")
         elif incom == "//cc:True" or incom == "//cc:False":
             if sectorlist[2] == True:
                 print(la["enabled"])
@@ -186,7 +232,7 @@ while True:
             currentdir = os.getcwd()
             lang = open(currentdir + "/en_uk.json")
             la = json.load(lang)
-            webcheckversion = "2.1"
+            webcheckversion = "3"
             proc = ""
             forcedst = False
             forcedstv = True
@@ -228,7 +274,10 @@ cv = command version + changelog
 echo = echo command
 log = log to logs file
 crash = well, we know what this does...
-exper = enable experimental features(True/False)""")
+exper = enable experimental features(True/False)
+policy = usage policy and EULA
+modding = rules for modding
+modinfo = supplies info for a mod(id)""")
         elif incom == "//cv":
             print("CV 4 - command version, command help, forced status, echo, log")
         elif sectorlist[1] == "//echo":
@@ -247,7 +296,68 @@ exper = enable experimental features(True/False)""")
             else:
                 print(la["disabled"])
                 ex = False
+        elif incom == "//policy":
+            print("""Usage policy:
+
+You may distribute on other trusted platforms not used by the creator, and modify and publish your modifications. However, you must credit the creator(LTIT), and the creator is not responsible for bugs on modified/externally distributed files, and damage, intentional or not, from these versions.
+
+
+EULA:
+
+Don'ts:
+Modify to frame websites
+Entirely rely on this thing, it may flag a scam site as legit
+Claim that this does anything other than said in the info
+Modify the log and claim that it was something outputted by the program
+Generally misuse the program or do something you feel might not be right
+Generally misuse modding the program
+
+Dos:
+Use to double check websites that may seem legit but you want to make sure
+Use to mess around with the commands, I wonder what wc://crash does...
+Use to check website statuses and wether they have ssl(https)
+
+Info:
+This isn't for telling you if a website is legit or not, only to reveal websites that look official and to check the status, and for some fun command stuff.""")
+        elif incom == "//modding":
+            print("""Modding rules:
+
+Don'ts:
+Modify the modding rules, usage policy or EULA, and translations and grammar fix mods to these elements MUST be fully accurate. You may not copyright your content.
+Modify the systems to give false results
+Add non-pg content to the mods
+Make the mods malicious
+
+Dos:
+Be creative or add new features
+Credit the creator
+Use common sense to see if something may be right if not in the rules
+
+Info:
+If you disobey any rules, or the creator finds that the mods may not be appropriate, you must take your mod down, or make changes, if the creator requests.
+I will try and notify the mod creator if I want a feature of their mod in the full program""")
+        elif incom == "//mods":
+            print(mods)
+        elif sectorlist[1] == "//modinfo":
+            for i in modmetas:
+                if i["id"] == sectorlist[2]:
+                    print("Name: " + i["name"])
+                    print("Description: " + i["description"])
+                    print("id: " + i["id"])
+                else:
+                    print(f"not {i['id']}")
         else:
             print(la["notfound"])
+            cat = []
+            a = 0
+            for i in modmetas:
+                cat.append(i["id"])
+                sys.path.insert(1,str(mods[a]) + "/code")
+                try:
+                    modu = __import__(("addons" + i["id"]))
+                except:
+                    print(str(i) + la["nocom"])
+                a +=1
+                modu.commands(incom)
     print(" ")
     print(" ")

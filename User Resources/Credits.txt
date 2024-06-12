@@ -1,0 +1,3 @@
+Languages: LTIT and everyone else working on my crowdin translations
+Logo: Pixelated Ρεβαν (Based on the python logo, Remixed by LTIT)
+Other: The people who made python and GitHub!
