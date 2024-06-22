@@ -14,8 +14,9 @@ from datetime import datetime
 timen = datetime.now()
 logging.info('bootup' + str(timen))
 import urllib.request
+import tkinter.messagebox as msb
 ac = 'qwertyuipopasdfghjklzxcvbnm:/#%1234567890."! @_()-QWERTYUIOPASDFGHJKLZXCVBNM'
-webcheckversion = "3"
+webcheckversion = "3.1.1"
 incom = ""
 langname = "English(UK)"
 langper = "100%(source lang)"
@@ -27,7 +28,7 @@ forcedst = False
 forcedstv = True
 ex = False
 import sys
-sys.path
+sys.path #I forgot if this does something useful
 mf = 0
 mods = [x[0] for x in os.walk(currentdir + "/mods")]
 for i in mods:
@@ -66,7 +67,7 @@ for i in modmetas:
     sys.path.insert(1,str(mods[a]) + "/code")
     try:
         modu = __import__(("fulloverride" + i["id"]))
-        print(f"WARN: {i['name']} uses full overrides. Mods with full overrides may not be compatible with each other. Restarting...")
+        msb.showwarning("Critical warning", la["fullover"])
         reg = False
     except:
         print(str(i["name"]) + la["nofull"])
@@ -106,7 +107,7 @@ while reg == True:
                 print(la["infofull"])
         print(" ")
         print(" ")
-        logging.info("Character check restult for: " + w + " resulted in " + la["cc"] + str(icr) + la["result"] + str(ics) + la["and"] + str(ica) + la["bc"])
+        logging.info("Character check result for: " + w + " resulted in " + la["cc"] + str(icr) + la["result"] + str(ics) + la["and"] + str(ica) + la["bc"])
     sectorlist = w.split(":")
     try:
         if sectorlist[0] == "wc":
@@ -117,7 +118,8 @@ while reg == True:
             command = False
     except:
         command = False
-        logging.warn("Exception occured with detecting commands")
+        logging.warning("Exception occurred with detecting commands")
+        msb.showwarning("Warning", "Issue with detecting commands(code e1)")
     if command == False and stenabled == True:
         if forcedst == False:
             system = bool(input(la["modeinput"]))
@@ -191,13 +193,13 @@ while reg == True:
         print(" ")
         print(" ")
         if incom == "//commands":
-            print("commands, changelog, lang, dv, cc:<True/False>, st:<True/False>, resetvars, iweb, fstv<True/False>, fstve<True/False>, commandhelp, cv, echo<output>, log<output>, exper<True/False>, policy, modding, modinfo<id>")
+            print("commands, changelog, lang, dv, cc:<True/False>, st:<True/False>, resetvars, iweb, fstv<True/False>, fstve<True/False>, commandhelp, cv, echo<output>, log<output>, exper<True/False>, policy, modding, modinfo<id>, confusion")
         elif incom == "//changelog":
-            print("3 - modding API, addons API, policies")
+            print("3.1.1 - (3.1)Using tkinter.messagebox, fixed spelling, removed debug code, switched IDE, (3.1.1)Fixed versions not being updated, fixed spelling, capital letters!")
         elif incom == "//lang":
             print(la["complang"] + langname + " " + langper + " " + langcompat)
         elif incom == "//dv":
-            print("DV 2.5 - Custom design possibilities with Modding API")
+            print("DV 3 - Warnings and errors...")
         elif incom == "//cc:True" or incom == "//cc:False":
             if sectorlist[2] == True:
                 print(la["enabled"])
@@ -232,7 +234,7 @@ while reg == True:
             currentdir = os.getcwd()
             lang = open(currentdir + "/en_uk.json")
             la = json.load(lang)
-            webcheckversion = "3"
+            webcheckversion = "3.1.1"
             proc = ""
             forcedst = False
             forcedstv = True
@@ -259,35 +261,37 @@ while reg == True:
         elif incom == "//commandhelp":
             print(la["chinfo"])
             print("""
-commands = full list of commands
-changelog = changelog of the latest python version
-lang = language info
-dv = design version + changelog
-cc = enable/disable character check(True/False)
-st = enable/disable status check(True/False)
-resetvars = debug command for resetting variables
-iweb = individual web check using raw urllib.request, may crash the program
-fstv = force status version(to new or old using True/False)
-fstve = force status version anable(True/False)
-commandhelp = detailed list of what commands do
-cv = command version + changelog
-echo = echo command
-log = log to logs file
-crash = well, we know what this does...
-exper = enable experimental features(True/False)
-policy = usage policy and EULA
-modding = rules for modding
-modinfo = supplies info for a mod(id)""")
+commands = Full list of commands
+changelog = Changelog of the latest python version
+lang = Language info
+dv = Design version + changelog
+cc = Enable/disable character check(True/False)
+st = Enable/disable status check(True/False)
+resetvars = Debug command for resetting variables
+iweb = Individual web check using raw urllib.request, may crash the program
+fstv = Force status version(to new or old using True/False)
+fstve = Force status version enable(True/False)
+commandhelp = Detailed list of what commands do
+cv = Command version & changelog
+echo = Echo command(String)
+log = Log to logs file(String)
+crash = Well, we know what this does... It crashes the program.
+exper = Enable experimental features(True/False), current experiments are: none
+policy = Usage policy and EULA
+modding = Rules for modding
+modinfo = Supplies info for a mod(id)
+confusion = Times when a crash has been prevented but no action was needed""")
         elif incom == "//cv":
-            print("CV 4 - command version, command help, forced status, echo, log")
+            print("CV 6 - confusion command")
         elif sectorlist[1] == "//echo":
             print(sectorlist[2])
         elif sectorlist[1] == "//log":
             logging.info("Logged by user: " + sectorlist[2])
         elif incom == "//crash":
             timen = datetime.now()
-            logging.error("You crashed this. This is your fault. at" + str(timen))
-            forcedst = True + 0 + "hi"
+            logging.error("You crashed this. This is your fault. At" + str(timen))
+            msb.showerror("Sigh", "Why did you do this?")
+            raise Exception("A crashed you caused. This is your fault")
         elif incom == "//exper:True" or incom == "//exper:False":
             print("EX: None")
             if sectorlist[2] == True:
@@ -315,7 +319,7 @@ Generally misuse modding the program
 Dos:
 Use to double check websites that may seem legit but you want to make sure
 Use to mess around with the commands, I wonder what wc://crash does...
-Use to check website statuses and wether they have ssl(https)
+Use to check website statuses and whether they have ssl(https)
 
 Info:
 This isn't for telling you if a website is legit or not, only to reveal websites that look official and to check the status, and for some fun command stuff.""")
@@ -344,8 +348,8 @@ I will try and notify the mod creator if I want a feature of their mod in the fu
                     print("Name: " + i["name"])
                     print("Description: " + i["description"])
                     print("id: " + i["id"])
-                else:
-                    print(f"not {i['id']}")
+        elif incom == "//confusion":
+            print(confusion)
         else:
             print(la["notfound"])
             cat = []
@@ -358,6 +362,6 @@ I will try and notify the mod creator if I want a feature of their mod in the fu
                 except:
                     print(str(i) + la["nocom"])
                 a +=1
-                modu.commands(incom)
+                modu.commands(incom, sectorlist, w)
     print(" ")
     print(" ")

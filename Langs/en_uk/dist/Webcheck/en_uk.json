@@ -37,5 +37,6 @@
   "mf": " mod(s) found, and mod subfolders found",
   "ml": " mods loaded",
   "nocom": " has no addon?",
-  "nofull": " has no full overrides"
+  "nofull": " has no full overrides",
+  "fullover": "A mod you are using uses full overrides. Restarting the program..."
 }

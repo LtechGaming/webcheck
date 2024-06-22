@@ -1,0 +1,2 @@
+Open the python development file at Programpy/webcheck.py
+Open the executable at dist/webcheck.exe
